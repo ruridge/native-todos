@@ -1,8 +1,8 @@
-import { registerRootComponent } from "expo";
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { registerRootComponent } from 'expo'
+import { StatusBar } from 'expo-status-bar'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-import { HomeScreen } from "./screens/home";
+import { HomeScreen } from './screens/home'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <HomeScreen />
       <StatusBar style="auto" />
     </SafeAreaProvider>
-  );
+  )
 }
 
-registerRootComponent(App);
+registerRootComponent(App)

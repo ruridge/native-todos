@@ -1,15 +1,15 @@
-import { Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export function HomeScreen() {
   return (
     <SafeAreaView className="bg-slate-700">
-      <View className="flex-1 items-center h-full w-full justify-center text-white text-lg">
-        <Text className="text-white text-lg">
+      <View className="h-full w-full flex-1 items-center justify-center text-lg text-white">
+        <Text className="text-lg text-white">
           Open up src/screens/home.tsx to start working on your app!
         </Text>
-        <Text className="text-white text-lg">Hello world! 👋</Text>
+        <Text className="text-lg text-white">Hello world! 👋</Text>
       </View>
     </SafeAreaView>
-  );
+  )
 }
