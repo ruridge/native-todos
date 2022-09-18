@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 export function HomeScreen() {
   return (
     <SafeAreaView className="bg-slate-700">
-      <View className="h-full w-full flex-1 items-center justify-center text-lg text-white">
+      <View className="h-full w-full flex-1 items-center justify-center text-lg">
         <Text className="text-lg text-white">
           Open up src/screens/home.tsx to start working on your app!
         </Text>
