@@ -1,7 +1,6 @@
 import { View, Text } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { z } from 'zod';
-import { useRefreshOnFocus } from '../hooks/use-refetch-on-focus';
 
 const PersonSchema = z.object({
   name: z.string(),
@@ -10,7 +9,7 @@ const PersonSchema = z.object({
 export type PersonType = z.infer<typeof PersonSchema>;
 
 export function Person(props: { personId: number }) {
-  const query = useQuery(
+  const personQuery = useQuery(
     ['person', props.personId],
     async () => {
       const response = await fetch(
@@ -24,14 +23,12 @@ export function Person(props: { personId: number }) {
     },
   );
 
-  // useRefreshOnFocus(personQuery.refetch)
-
-  if (query.isLoading) {
+  if (personQuery.isLoading) {
     return <Text className="dark:text-white">Loading...</Text>;
   }
-  if (query.isError) {
-    console.log(`personId: ${props.personId}`, query.error);
-    if (query.error instanceof Error) {
+  if (personQuery.isError) {
+    console.log(`personId: ${props.personId}`, personQuery.error);
+    if (personQuery.error instanceof Error) {
       return (
         <Text className="dark:text-white">
           Error loading person, please try again later.
@@ -47,7 +44,7 @@ export function Person(props: { personId: number }) {
   return (
     <View className="flex flex-row items-center">
       <Text className="dark:text-white">
-        Person Name: {query.data.name} {query.isRefetching && '♻️'}
+        Person Name: {personQuery.data.name} {personQuery.isRefetching && '♻️'}
       </Text>
     </View>
   );

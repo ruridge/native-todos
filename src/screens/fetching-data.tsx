@@ -5,8 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Person } from '../components/person';
 import { Time } from '../components/time';
 
-import { useRefreshOnFocus } from '../hooks/use-refetch-on-focus';
-
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../components/navigation';
 
@@ -17,11 +15,6 @@ export type FetchingDataScreenProps = NativeStackScreenProps<
 
 export function FetchingDataScreen({ navigation }: FetchingDataScreenProps) {
   const [person, setPerson] = useState(1);
-
-  useRefreshOnFocus(() => {
-    console.log('refreshing home screen');
-    return Promise.resolve();
-  });
 
   return (
     <SafeAreaView
