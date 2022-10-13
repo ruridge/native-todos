@@ -1,14 +1,17 @@
 import { useColorScheme } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import colors from 'tailwindcss/colors';
 
 import { HomeScreen } from '../screens/home';
+import { SettingsScreen } from '../screens/settings-screen';
 import { FetchingDataScreen } from '../screens/fetching-data';
 
 import type { Theme } from '@react-navigation/native';
 
+const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const MyDarkTheme: Theme = {
@@ -30,6 +33,16 @@ export function Navigation() {
     <NavigationContainer
       theme={colorScheme === 'dark' ? MyDarkTheme : DefaultTheme}
     >
+      <Drawer.Navigator>
+        <Drawer.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Tasks', headerShown: true }}
+        />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
+      </Drawer.Navigator>
+
+      {/*
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
@@ -47,6 +60,7 @@ export function Navigation() {
           }}
         />
       </Stack.Navigator>
+      */}
     </NavigationContainer>
   );
 }
