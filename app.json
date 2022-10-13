@@ -2,10 +2,11 @@
   "expo": {
     "name": "native-todos",
     "slug": "native-todos",
+    "owner": "ruridge",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -16,7 +17,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ruridge.nativetodos"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,6 +28,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "863916de-9b6b-4dce-b861-dc18a65013ac"
+      }
     }
   }
 }
