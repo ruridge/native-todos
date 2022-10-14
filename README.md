@@ -1,3 +1,20 @@
+# What is this?
+A playground project to learn some modern React Native.
+- Expo
+- Tailwind
+- Reanimated
+- React Query
+- D3.js (soon)
+
+## Current App
+animations, navigation, react query data fetching and revalidation
+
+
+https://user-images.githubusercontent.com/856071/195883077-5e7ebfa1-74d1-414e-b44c-dcc250cebf36.mov
+
+
+
+
 ## Installation
 
 **How can I get this up and running?**
