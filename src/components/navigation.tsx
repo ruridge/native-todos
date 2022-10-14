@@ -7,6 +7,7 @@ import { SettingsScreen } from '../screens/settings-screen';
 import { FetchingDataScreen } from '../screens/fetching-data-screen';
 
 import type { ColorSchemeName } from 'react-native';
+import { Sidebar } from './sidebar';
 
 export type DrawerParamList = {
   Home: undefined;
@@ -23,7 +24,13 @@ export function Navigation({ colorScheme }: NavigationProps) {
     <NavigationContainer
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
     >
-      <Drawer.Navigator>
+      <Drawer.Navigator
+        initialRouteName="Home"
+        drawerContent={(props) => <Sidebar {...props} />}
+        screenOptions={{
+          drawerType: 'back',
+        }}
+      >
         <Drawer.Screen
           name="Home"
           component={HomeScreen}
