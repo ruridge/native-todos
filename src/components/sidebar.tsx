@@ -11,7 +11,9 @@ import Animated, {
 } from 'react-native-reanimated';
 
 export function Sidebar(props: DrawerContentComponentProps) {
-  const progress = useDrawerProgress();
+  const progress = useDrawerProgress() as Readonly<
+    Animated.SharedValue<number>
+  >;
 
   const animatedStyle = useAnimatedStyle(() => {
     const scale = interpolate(progress.value, [0, 1], [0.8, 1]);
