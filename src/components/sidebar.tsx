@@ -2,12 +2,28 @@ import {
   DrawerContentComponentProps,
   DrawerItemList,
   DrawerContentScrollView,
+  useDrawerProgress,
 } from '@react-navigation/drawer';
-import { Image, View } from 'react-native';
+import { Image } from 'react-native';
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 
 export function Sidebar(props: DrawerContentComponentProps) {
+  const progress = useDrawerProgress();
+
+  const animatedStyle = useAnimatedStyle(() => {
+    const scale = interpolate(progress.value, [0, 1], [0.8, 1]);
+    const opacity = interpolate(progress.value, [0, 0.5, 1], [0, 0.1, 1]);
+    return {
+      transform: [{ scale }],
+      opacity,
+    };
+  });
+
   return (
-    <View className="h-full">
+    <Animated.View className="h-full overflow-hidden" style={animatedStyle}>
       <Image
         source={require('../assets/sidebar-masthead.jpg')}
         className=" h-40 w-full"
@@ -19,6 +35,6 @@ export function Sidebar(props: DrawerContentComponentProps) {
       <DrawerContentScrollView className="grow items-start justify-start pl-4 pt-4">
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-    </View>
+    </Animated.View>
   );
 }
