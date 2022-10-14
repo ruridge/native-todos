@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../components/button';
-
 import { Person } from '../components/person';
 import { Time } from '../components/time';
 

@@ -4,12 +4,9 @@ import { Button } from '../components/button';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { DrawerParamList } from '../components/navigation';
 
-export type HomeScreenProps = NativeStackScreenProps<
-  DrawerParamList,
-  'Settings'
->;
+type SettingsScreenProps = NativeStackScreenProps<DrawerParamList, 'Settings'>;
 
-export function SettingsScreen({ navigation }: HomeScreenProps) {
+export function SettingsScreen({ navigation }: SettingsScreenProps) {
   return (
     <View className="h-full items-center justify-evenly bg-red-200 dark:bg-red-900">
       <Text className="dark:text-neutral-50">
