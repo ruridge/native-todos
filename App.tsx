@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+import { useColorScheme } from 'react-native';
 import { AppState } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -24,10 +25,11 @@ AppState.addEventListener('change', (status) => {
 
 export default function App() {
   const queryClient = new QueryClient();
+  const colorScheme = useColorScheme();
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
-        <Navigation />
+        <Navigation colorScheme={colorScheme} />
         <StatusBar style="auto" />
       </SafeAreaProvider>
     </QueryClientProvider>

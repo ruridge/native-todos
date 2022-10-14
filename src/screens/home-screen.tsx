@@ -2,13 +2,10 @@ import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../components/navigation';
+import type { DrawerParamList } from '../components/navigation';
 import { Button } from '../components/button';
 
-export type HomeScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  'Home'
->;
+export type HomeScreenProps = NativeStackScreenProps<DrawerParamList, 'Home'>;
 
 export function HomeScreen() {
   return (

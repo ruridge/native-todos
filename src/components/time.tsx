@@ -30,8 +30,7 @@ export function Time() {
     },
   );
 
-  // force a refetch of data if this component didn't unmount between
-  // navigation (eg: going from a child to a parent stack)
+  // force a refetch of data if this component didn't unmount between navigation
   useRefetchOnFocus(timeQuery.refetch);
 
   if (timeQuery.isLoading) {

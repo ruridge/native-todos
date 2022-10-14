@@ -1,13 +1,21 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Button } from '../components/button';
 
-export function SettingsScreen() {
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { DrawerParamList } from '../components/navigation';
+
+export type HomeScreenProps = NativeStackScreenProps<
+  DrawerParamList,
+  'Settings'
+>;
+
+export function SettingsScreen({ navigation }: HomeScreenProps) {
   return (
     <View className="h-full items-center justify-evenly bg-red-200 dark:bg-red-900">
       <Text className="dark:text-neutral-50">
         Welcome to the settings, we&apos;ve got fun & games
       </Text>
-      <Button label="Hello World" onPress={() => alert('hello')} />
+      <Button label="Fetch Demo" onPress={() => navigation.navigate('Fetch')} />
     </View>
   );
 }

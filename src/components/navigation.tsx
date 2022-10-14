@@ -1,37 +1,27 @@
-import { useColorScheme } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import colors from 'tailwindcss/colors';
+import { DarkTheme, DefaultTheme } from '../utils/theme';
 
-import { HomeScreen } from '../screens/home';
+import { HomeScreen } from '../screens/home-screen';
 import { SettingsScreen } from '../screens/settings-screen';
-import { FetchingDataScreen } from '../screens/fetching-data';
+import { FetchingDataScreen } from '../screens/fetching-data-screen';
 
-import type { Theme } from '@react-navigation/native';
+import type { ColorSchemeName } from 'react-native';
 
-const Drawer = createDrawerNavigator();
-const Stack = createNativeStackNavigator<RootStackParamList>();
-
-const MyDarkTheme: Theme = {
-  ...DarkTheme,
-  colors: {
-    ...DarkTheme.colors,
-    card: colors.slate[900],
-  },
-};
-
-export type RootStackParamList = {
+export type DrawerParamList = {
   Home: undefined;
-  FetchingData: undefined;
+  Fetch: undefined;
+  Settings: undefined;
 };
+const Drawer = createDrawerNavigator<DrawerParamList>();
 
-export function Navigation() {
-  const colorScheme = useColorScheme();
+type NavigationProps = {
+  colorScheme: ColorSchemeName;
+};
+export function Navigation({ colorScheme }: NavigationProps) {
   return (
     <NavigationContainer
-      theme={colorScheme === 'dark' ? MyDarkTheme : DefaultTheme}
+      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
     >
       <Drawer.Navigator>
         <Drawer.Screen
@@ -39,28 +29,13 @@ export function Navigation() {
           component={HomeScreen}
           options={{ title: 'Tasks', headerShown: true }}
         />
+        <Drawer.Screen
+          name="Fetch"
+          component={FetchingDataScreen}
+          options={{ title: 'React Query Demo' }}
+        />
         <Drawer.Screen name="Settings" component={SettingsScreen} />
       </Drawer.Navigator>
-
-      {/*
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            title: 'Home Screen',
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="FetchingData"
-          component={FetchingDataScreen}
-          options={{
-            title: 'Fetching Data',
-          }}
-        />
-      </Stack.Navigator>
-      */}
     </NavigationContainer>
   );
 }
