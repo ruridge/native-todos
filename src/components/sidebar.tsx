@@ -18,9 +18,11 @@ export function Sidebar(props: DrawerContentComponentProps) {
   const animatedStyle = useAnimatedStyle(() => {
     const scale = interpolate(progress.value, [0, 1], [0.8, 1]);
     const opacity = interpolate(progress.value, [0, 0.5, 1], [0, 0.1, 1]);
+    const borderRadius = interpolate(progress.value, [0, 0.5, 1], [20, 16, 0]);
     return {
       transform: [{ scale }],
       opacity,
+      borderRadius,
     };
   });
 
