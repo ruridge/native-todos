@@ -9,11 +9,24 @@ import { FetchingDataScreen } from '../screens/fetching-data-screen';
 import type { ColorSchemeName } from 'react-native';
 import { Sidebar } from './sidebar';
 
+/*
+ * This type gives TypeScript the information it needs to know what routes are
+ * defined in this navigator as well as what props might be passed to the
+ * screen. If props are passed through to the screen set their types, if no
+ * props are passed set undefined.
+ * More info:
+ *  https://reactnavigation.org/docs/params/
+ *  https://reactnavigation.org/docs/typescript#type-checking-the-navigator
+ *  https://reactnavigation.org/docs/typescript/#organizing-types
+ */
+
 export type DrawerParamList = {
   Home: undefined;
   Fetch: undefined;
   Settings: undefined;
 };
+
+// Documentation: https://reactnavigation.org/docs/drawer-navigator
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
 type NavigationProps = {

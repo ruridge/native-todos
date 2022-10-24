@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler';
+import 'react-native-gesture-handler'; // In use by React Nav Drawer Navigator
 import { useColorScheme } from 'react-native';
 import { AppState } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
