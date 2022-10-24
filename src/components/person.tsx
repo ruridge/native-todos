@@ -1,6 +1,7 @@
-import { View, Text } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { z } from 'zod';
+import { Text } from './text';
 
 const PersonSchema = z.object({
   name: z.string(),
@@ -24,28 +25,19 @@ export function Person(props: { personId: number }) {
   );
 
   if (personQuery.isLoading) {
-    return <Text className="dark:text-white">Loading...</Text>;
+    return <Text size="lg">Loading...</Text>;
   }
   if (personQuery.isError) {
     console.log(`personId: ${props.personId}`, personQuery.error);
     if (personQuery.error instanceof Error) {
-      return (
-        <Text className="dark:text-white">
-          Error loading person, please try again later.
-        </Text>
-      );
+      return <Text>Error loading person, please try again later.</Text>;
     }
-    return (
-      <Text className="dark:text-white">
-        Unknown: JSON.stringify(personQuery.error)
-      </Text>
-    );
+    return <Text>Unknown: JSON.stringify(personQuery.error)</Text>;
   }
   return (
-    <View className="flex flex-row items-center">
-      <Text className="dark:text-white">
-        Person Name: {personQuery.data.name} {personQuery.isRefetching && '♻️'}
-      </Text>
+    <View className="flex-row">
+      <Text size="lg">Person Name: {personQuery.data.name}</Text>
+      {personQuery.isRefetching && <ActivityIndicator />}
     </View>
   );
 }

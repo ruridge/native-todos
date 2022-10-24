@@ -1,7 +1,8 @@
-import { View, Text } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { z } from 'zod';
 
+import { Text } from './text';
 import { useRefetchOnFocus } from '../hooks/use-refetch-on-focus';
 
 const TimeSchema = z.object({
@@ -34,32 +35,29 @@ export function Time() {
   useRefetchOnFocus(timeQuery.refetch);
 
   if (timeQuery.isLoading) {
-    return <Text className="dark:text-white">Loading...</Text>;
+    return <Text>Loading...</Text>;
   }
   if (timeQuery.isError) {
     if (timeQuery.error instanceof Error) {
-      return (
-        <Text className="dark:text-white">
-          Error loading time, please try again later.
-        </Text>
-      );
+      return <Text>Error loading time, please try again later.</Text>;
     }
-    return (
-      <Text className="dark:text-white">
-        Unknown: JSON.stringify(personQuery.error)
-      </Text>
-    );
+    return <Text>Unknown: JSON.stringify(personQuery.error)</Text>;
   }
   return (
-    <View className="flex flex-col items-center">
-      <Text className="dark:text-white">
-        Year: {timeQuery.data.year} | Month: {timeQuery.data.month} | Day:{' '}
-        {timeQuery.data.day}
-      </Text>
-      <Text className="dark:text-white">
-        Hour: {timeQuery.data.hour} | Minute: {timeQuery.data.minute} | Second:{' '}
-        {timeQuery.data.seconds} {timeQuery.isRefetching && '♻️'}
-      </Text>
+    <View className="flex-row">
+      <View>
+        <Text>
+          Year: {timeQuery.data.year} | Month: {timeQuery.data.month} | Day:{' '}
+          {timeQuery.data.day}
+        </Text>
+        <View className="flex-row">
+          <Text>
+            Hour: {timeQuery.data.hour} | Minute: {timeQuery.data.minute} |
+            Second: {timeQuery.data.seconds}{' '}
+          </Text>
+        </View>
+      </View>
+      {timeQuery.isRefetching && <ActivityIndicator />}
     </View>
   );
 }
